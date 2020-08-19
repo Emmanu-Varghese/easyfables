@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tittle: MyString
+  written_by: 1
+  intro: MyText
+  content: MyText
+  contest: one
+  deleted: false
+
+two:
+  tittle: MyString
+  written_by: 1
+  intro: MyText
+  content: MyText
+  contest: two
+  deleted: false

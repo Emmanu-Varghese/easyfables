@@ -1,0 +1,35 @@
+
+<div class="d-flex flex-column flex-lg-row ">
+  <div class="mr-auto">
+    <h2>Users</h2>
+  </div>
+</div>
+
+<div class="table-responsive mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Sign up date</th>
+        <th>Last Sign in at</th>
+        <th>Email Confirmed</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name%></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.last_sign_in_at %></td>
+        <td><%= user.confirmed? ? 'Yes' : 'No'%></td>
+        <td><%= link_to "Delete this user", destroy_user_path(:id => user.id), data: { confirm: "Are you sure?" }, method: :delete %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

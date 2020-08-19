@@ -1,0 +1,60 @@
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link <%= (controller_name == 'admin_sections' and action_name == 'dashboard') ? 'active' : ''%>" href="<%= dashboard_path %>">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link <%= (controller_name == 'admin_sections' and action_name == 'list_users') ? 'active' : ''%>" href="<%= list_users_path %>">
+              <span data-feather="users"></span>
+              Users
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Resources</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link <%= controller_name == 'countries' ? 'active' : ''%>" href="<%= countries_path%>">
+              <span data-feather="layers"></span>
+              Countries
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= controller_name == 'categories' ? 'active' : ''%>" href="<%= categories_path%>">
+              <span data-feather="layers"></span>
+              Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= controller_name == 'rules' ? 'active' : ''%>" href="<%= rules_path%>">
+              <span data-feather="layers"></span>
+              Rules
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= controller_name == 'contests' ? 'active' : ''%>" href="<%= contests_path%>">
+              <span data-feather="layers"></span>
+              Contests
+            </a>
+          </li>
+        </ul>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="<%= root_path %>">
+              <span data-feather="link"></span>
+              Main Website
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>

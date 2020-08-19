@@ -1,0 +1,35 @@
+<h2><%= @country.persisted? ? 'Edit Country' : 'New Country'%></h2>
+<%= form_with(model: country, local: true) do |form| %>
+<% if country.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(country.errors.count, "error") %> prohibited this country from being saved:</h2>
+
+  <ul>
+    <% country.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <%= form.label :name, class: 'input-group-text' %>
+      </div>
+      <%= form.text_field :name, class: 'form-control', required: true %>
+    </div>
+    <div class="input-group mt-4">
+      <div class="input-group-prepend">
+        <%= form.label :country_code, class: 'input-group-text' %>
+      </div>
+      <%= form.text_field :country_code, class: 'form-control', required: true %>
+    </div>
+    <div class="actions mt-3">
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<% end %>
+

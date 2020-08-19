@@ -1,0 +1,16 @@
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+<img class="mb-4" src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+<h2>Resend confirmation instructions</h2>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field mb-4">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control',placeholder: "Email address" , required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Resend confirmation instructions", :class => "btn btn-sm btn-primary btn-block" %>
+  </div>
+  <%= render "users/shared/links" %>
+<% end %>
+
+
