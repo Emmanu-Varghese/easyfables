@@ -1,33 +1,51 @@
 <h2><%= @rule.persisted? ? 'Edit Rule' : 'New Rule'%></h2>
 <%= form_with(model: rule, local: true) do |form| %>
-  <% if rule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+<% if rule.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
 
-      <ul>
-      <% rule.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted %>
-    <%= form.check_box :deleted %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <ul>
+    <% rule.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+<div class="row">
+  <div class="col-md-4">
+   <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control', required: true %>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <%= form.label :content, class: 'control-label' %>
+    <%= form.cktext_area :content,  ckeditor: { toolbar: "mini" }, class: 'form-control', required: true %>
+    <label id="rule_content-error" class="error" for="rule_content"></label>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="actions">
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+</div>
+</div>
+<% end %>
+<script type="text/javascript">
+  $('form').validate({
+    ignore: [],
+    debug: false,
+    rules: { 
+
+      'rule[content]':{
+       required: function() 
+       {
+         CKEDITOR.instances.rule_content.updateElement();
+       },
+
+       minlength:10
+     }
+   }
+ });
+</script>

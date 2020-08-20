@@ -12,10 +12,13 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery-validate/jquery.validate.min.js
+//= require jquery-validate/additional-methods.min.js
 //= require bootstrap/js/bootstrap.bundle.min.js
 //= require javascripts/feather.min.js
 //= require activestorage
 //= require turbolinks
+//= require ckeditor/init
 //= require_tree .
 
 $(document).on('ready turbolinks:load', function() {
