@@ -1,17 +1,7 @@
 
 <h2><%= @contest.persisted? ? 'Edit Contest' : 'New Contest'%></h2>
-<%= form_with(model: contest, local: true) do |form| %>
-<% if contest.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
-
-  <ul>
-    <% contest.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+<%= form_with(model: contest) do |form| %>
+<div id="error-explanation"></div>
 <div class="row">
   <div class="col-md-3">
    <div class="form-group">

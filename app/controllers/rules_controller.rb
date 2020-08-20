@@ -25,29 +25,20 @@ class RulesController < ApplicationController
   # POST /rules.json
   def create
     @rule = Rule.new(rule_params)
-
-    respond_to do |format|
-      if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
-        format.json { render :show, status: :created, location: @rule }
-      else
-        format.html { render :new }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
-      end
+    if @rule.save
+      redirect_to rules_url, notice: 'Rule was successfully created.'
+    else
+      render layout: false
     end
   end
 
   # PATCH/PUT /rules/1
   # PATCH/PUT /rules/1.json
   def update
-    respond_to do |format|
-      if @rule.update(rule_params)
-        format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rule }
-      else
-        format.html { render :edit }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
-      end
+    if @rule.update(rule_params)
+      redirect_to rules_url, notice: 'Rule was successfully updated.'
+    else
+      render layout: false
     end
   end
 
@@ -71,4 +62,4 @@ class RulesController < ApplicationController
     def rule_params
       params.require(:rule).permit(:title, :content, :deleted)
     end
-end
+  end

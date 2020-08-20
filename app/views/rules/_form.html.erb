@@ -1,16 +1,6 @@
 <h2><%= @rule.persisted? ? 'Edit Rule' : 'New Rule'%></h2>
-<%= form_with(model: rule, local: true) do |form| %>
-<% if rule.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
-
-  <ul>
-    <% rule.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+<%= form_with(model: rule) do |form| %>
+<div id="error-explanation"></div>
 <div class="row">
   <div class="col-md-4">
    <div class="form-group">

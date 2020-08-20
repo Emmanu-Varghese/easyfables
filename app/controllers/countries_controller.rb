@@ -25,29 +25,20 @@ class CountriesController < ApplicationController
   # POST /countries.json
   def create
     @country = Country.new(country_params)
-
-    respond_to do |format|
-      if @country.save
-        format.html { redirect_to @country, notice: 'Country was successfully created.' }
-        format.json { render :show, status: :created, location: @country }
-      else
-        format.html { render :new }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
-      end
+    if @country.save
+      redirect_to countries_path, notice: 'Country was successfully created.'
+    else
+      render layout: false
     end
   end
 
   # PATCH/PUT /countries/1
   # PATCH/PUT /countries/1.json
   def update
-    respond_to do |format|
-      if @country.update(country_params)
-        format.html { redirect_to @country, notice: 'Country was successfully updated.' }
-        format.json { render :show, status: :ok, location: @country }
-      else
-        format.html { render :edit }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
-      end
+    if @country.update(country_params)
+      redirect_to countries_path, notice: 'Country was successfully updated.'
+    else
+      render layout: false
     end
   end
 

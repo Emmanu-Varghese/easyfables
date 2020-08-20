@@ -85,3 +85,10 @@ label.error{
   bottom: 0;
   z-index: 100;
 }
+ul.errors li{
+  list-style: decimal;
+}
+#error-explanation{
+  width: 100%;
+  float: left;
+}

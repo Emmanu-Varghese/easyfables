@@ -1,0 +1,7 @@
+$("#error-explanation").html("");
+$("#error-explanation").html("<ul class='errors alert-danger pt-2 pb-2'></ul>");
+<% if @rule.errors.any? %>
+  <% @rule.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% end %>

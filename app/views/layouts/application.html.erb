@@ -11,23 +11,25 @@
 
 <body>
   <% if (current_user.present? and current_user.has_role? :admin and ['countries','categories','rules','contests','admin_sections'].include? controller_name)%>
-    <%= render "layouts/admin_head_panel" %>
-    <p id="notice"><%= notice %></p>
-    <div class="container-fluid">
-      <div class="row">
-        <%= render "layouts/admin_sidebar" %>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="padding-bottom: 100px;">
-          <%= yield %>
-        </main>
-      </div>
+  <%= render "layouts/admin_head_panel" %>
+  <div class="container-fluid">
+    <div class="row">
+      <%= render "layouts/admin_sidebar" %>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-4" style="padding-bottom: 100px;">
+        <% if !notice.blank? %>
+          <p id="notice" class="alert alert-info"><%= notice %></p>
+        <% end %>
+        <%= yield %>
+      </main>
     </div>
-    <%= render "layouts/admin_footer" %>
+  </div>
+  <%= render "layouts/admin_footer" %>
   <% else %>
-    <%= render "layouts/head_panel" %>
-    <main   style="padding-top: 70px;">
+  <%= render "layouts/head_panel" %>
+  <main   style="padding-top: 70px;">
     <%= yield %>
-    </main>
-    <%= render "layouts/footer" %>
+  </main>
+  <%= render "layouts/footer" %>
   <% end %>
 
   <!-- Footer -->

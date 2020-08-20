@@ -25,29 +25,20 @@ class ContestsController < ApplicationController
   # POST /contests.json
   def create
     @contest = Contest.new(contest_params)
-
-    respond_to do |format|
-      if @contest.save
-        format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
-        format.json { render :show, status: :created, location: @contest }
-      else
-        format.html { render :new }
-        format.json { render json: @contest.errors, status: :unprocessable_entity }
-      end
+    if @contest.save
+      redirect_to contests_path, notice: 'Contest was successfully created.'
+    else
+      render layout: false
     end
   end
 
   # PATCH/PUT /contests/1
   # PATCH/PUT /contests/1.json
   def update
-    respond_to do |format|
-      if @contest.update(contest_params)
-        format.html { redirect_to @contest, notice: 'Contest was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contest }
-      else
-        format.html { render :edit }
-        format.json { render json: @contest.errors, status: :unprocessable_entity }
-      end
+    if @contest.update(contest_params)
+      redirect_to contests_path, notice: 'Contest was successfully updated.'
+    else
+      render layout: false
     end
   end
 
@@ -71,4 +62,4 @@ class ContestsController < ApplicationController
     def contest_params
       params.require(:contest).permit(:title, :content, :prize_money, :start_date, :end_date, :rule_id, :category_id, :deleted)
     end
-end
+  end

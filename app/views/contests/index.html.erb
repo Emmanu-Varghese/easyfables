@@ -12,13 +12,10 @@
           <thead>
             <tr>
               <th>Title</th>
-              <th>Content</th>
               <th>Prize money</th>
               <th>Start date</th>
               <th>End date</th>
-              <th>Rule</th>
               <th>Category</th>
-              <th>Deleted</th>
               <th colspan="3"></th>
             </tr>
           </thead>
@@ -27,13 +24,10 @@
             <% @contests.each do |contest| %>
             <tr>
               <td><%= contest.title %></td>
-              <td><%= contest.content %></td>
               <td><%= contest.prize_money %></td>
               <td><%= contest.start_date %></td>
               <td><%= contest.end_date %></td>
-              <td><%= contest.rule %></td>
-              <td><%= contest.category %></td>
-              <td><%= contest.deleted %></td>
+              <td><%= contest.category.name %></td>
               <td><%= link_to 'Show', contest %></td>
               <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
               <td><%= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
