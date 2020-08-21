@@ -11,7 +11,7 @@
 <div class="col-md-12">
   <div class="form-group">
     <%= form.label :content, class: 'control-label' %>
-    <%= form.cktext_area :content,  ckeditor: { toolbar: "mini" }, class: 'form-control', required: true %>
+    <%= form.rich_text_area :content, :style => "min-height:250px;", :required => true %>
     <label id="rule_content-error" class="error" for="rule_content"></label>
   </div>
 </div>
@@ -23,19 +23,5 @@
 </div>
 <% end %>
 <script type="text/javascript">
-  $('form').validate({
-    ignore: [],
-    debug: false,
-    rules: { 
-
-      'rule[content]':{
-       required: function() 
-       {
-         CKEDITOR.instances.rule_content.updateElement();
-       },
-
-       minlength:10
-     }
-   }
- });
+  $('form').validate();
 </script>

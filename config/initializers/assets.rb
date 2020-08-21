@@ -15,3 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.paths << Rails.root.join("vendor/theme/")
 Rails.application.config.assets.paths << Rails.root.join("vendor/assets/")
 Rails.application.config.assets.precompile += %w[ckeditor/config.js]
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
