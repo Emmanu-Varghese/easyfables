@@ -21,10 +21,9 @@
                 <%= current_user.full_name %>
               </button>
               <div class="dropdown-menu p-0" aria-labelledby="btnGroupDrop1">
+                <%= link_to "My Profile", my_profile_path, class: "dropdown-item" %>
                 <% if current_user.has_role? :admin %>
                 <%= link_to "Admin dashboard", dashboard_path, class: "dropdown-item" %>
-                <% else %>
-                <%= link_to "My Profile", my_profile_path, class: "dropdown-item" %>
                 <% end %>
                 <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
               </div>

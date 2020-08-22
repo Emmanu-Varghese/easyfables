@@ -17,7 +17,7 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create story" do
     assert_difference('Story.count') do
-      post stories_url, params: { story: { content: @story.content, contest_id: @story.contest_id, deleted: @story.deleted, intro: @story.intro, tittle: @story.tittle, written_by: @story.written_by } }
+      post stories_url, params: { story: { accepted_at: @story.accepted_at, ban_reason: @story.ban_reason, banned: @story.banned, banned_at: @story.banned_at, category_id: @story.category_id, content: @story.content, contest_id: @story.contest_id, deleted: @story.deleted, intro: @story.intro, like: @story.like, status: @story.status, title: @story.title, user_id: @story.user_id } }
     end
 
     assert_redirected_to story_url(Story.last)
@@ -34,7 +34,7 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update story" do
-    patch story_url(@story), params: { story: { content: @story.content, contest_id: @story.contest_id, deleted: @story.deleted, intro: @story.intro, tittle: @story.tittle, written_by: @story.written_by } }
+    patch story_url(@story), params: { story: { accepted_at: @story.accepted_at, ban_reason: @story.ban_reason, banned: @story.banned, banned_at: @story.banned_at, category_id: @story.category_id, content: @story.content, contest_id: @story.contest_id, deleted: @story.deleted, intro: @story.intro, like: @story.like, status: @story.status, title: @story.title, user_id: @story.user_id } }
     assert_redirected_to story_url(@story)
   end
 

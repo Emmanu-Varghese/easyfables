@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_114647) do
+ActiveRecord::Schema.define(version: 2020_08_22_035641) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -104,15 +104,24 @@ ActiveRecord::Schema.define(version: 2020_08_21_114647) do
   end
 
   create_table "stories", force: :cascade do |t|
-    t.string "tittle"
-    t.integer "written_by"
-    t.text "intro"
+    t.string "title"
     t.text "content"
-    t.integer "contest_id"
+    t.text "intro"
+    t.integer "user_id", null: false
+    t.integer "category_id", null: false
+    t.integer "contest_id", null: false
+    t.integer "status"
+    t.datetime "accepted_at"
+    t.integer "like", default: 0
+    t.boolean "banned", default: false
+    t.text "ban_reason"
+    t.datetime "banned_at"
     t.boolean "deleted", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_stories_on_category_id"
     t.index ["contest_id"], name: "index_stories_on_contest_id"
+    t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -148,5 +157,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_114647) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "contests", "categories"
   add_foreign_key "contests", "rules"
+  add_foreign_key "stories", "categories"
   add_foreign_key "stories", "contests"
+  add_foreign_key "stories", "users"
 end

@@ -1,17 +1,31 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tittle: MyString
-  written_by: 1
-  intro: MyText
+  title: MyString
   content: MyText
+  intro: MyText
+  user: one
+  category: one
   contest: one
+  status: 1
+  accepted_at: 2020-08-22 09:26:50
+  like: 1
+  banned: false
+  ban_reason: MyText
+  banned_at: 2020-08-22 09:26:50
   deleted: false
 
 two:
-  tittle: MyString
-  written_by: 1
-  intro: MyText
+  title: MyString
   content: MyText
+  intro: MyText
+  user: two
+  category: two
   contest: two
+  status: 1
+  accepted_at: 2020-08-22 09:26:50
+  like: 1
+  banned: false
+  ban_reason: MyText
+  banned_at: 2020-08-22 09:26:50
   deleted: false
