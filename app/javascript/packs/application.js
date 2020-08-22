@@ -18,4 +18,4 @@ require("@rails/actiontext")
 
 import "../trix-editor-overrides"
 
-import "controllers"
+// import "controllers"
