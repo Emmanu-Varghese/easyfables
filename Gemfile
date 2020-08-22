@@ -70,3 +70,4 @@ gem 'ckeditor', '4.2.4'
 gem 'webpacker'
 # Use image_processing gem to enable rendering of attached images to posts
 gem 'image_processing', '~> 1.2'
+gem "stimulus_reflex", "~> 3.2"
