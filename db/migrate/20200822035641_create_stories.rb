@@ -4,9 +4,9 @@ class CreateStories < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :content
       t.text :intro
-      t.belongs_to :user, null: false, foreign_key: true
-      t.belongs_to :category, null: false, foreign_key: true
-      t.belongs_to :contest, null: false, foreign_key: true
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :category, foreign_key: true
+      t.belongs_to :contest, foreign_key: true
       t.integer :status
       t.datetime :accepted_at
       t.integer :like, default: 0

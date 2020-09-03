@@ -14,31 +14,25 @@
     <div class="col-md-12">
      <div class="form-group">
       <%= form.label :title %>
-      <%= form.text_field :title, class: 'form-control', required: true %>
+      <%= form.text_field :title, class: 'form-control', required: true, :minlength => 10, :maxlength => 70 %>
     </div>
   </div>
   <div class="col-md-12">
    <div class="form-group">
     <%= form.label :intro %>
-    <%= form.text_area :intro, class: 'form-control', required: true %>
+    <%= form.text_area :intro, class: 'form-control', required: true, :minlength => 100, :maxlength => 200  %>
   </div>
 </div>
 <div class="col-md-12">
   <div class="form-group">
     <%= form.label :content %>
-    <%= form.rich_text_area :content, :style => "min-height:250px;", required: true  %>
+    <%= form.rich_text_area :content, :style => "min-height:250px;", required: true, :minlength => 2000, :maxlength => 5500  %>
   </div>
 </div>
 <div class="col-md-3">
   <div class="form-group">
     <%= form.label :category %>
     <%= form.select :category_id, options_for_select(Category.where(deleted: false).order(:name).collect {|a| [a.name, a.id]}, ""), {prompt: true}, {class: "form-control", required: true } %>
-  </div>
-</div>
-<div class="col-md-3">
-  <div class="form-group">
-    <%= form.label :contest %>
-    <%= form.select :contest_id, options_for_select(Contest.where(deleted: false).order(:title).collect {|a| [a.title, a.id]}, ""), {prompt: true}, {class: "form-control", required: true } %>
   </div>
 </div>
 <div class="col-md-12">
@@ -49,3 +43,6 @@
 </div>
 <% end %>
 </div>
+<script type="text/javascript">
+  $('form').validate();
+</script>

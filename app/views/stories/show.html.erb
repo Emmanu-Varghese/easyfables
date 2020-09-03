@@ -1,69 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @story.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @story.content %>
-</p>
-
-<p>
-  <strong>Intro:</strong>
-  <%= @story.intro %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @story.user_id %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @story.category_id %>
-</p>
-
-<p>
-  <strong>Contest:</strong>
-  <%= @story.contest_id %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @story.status %>
-</p>
-
-<p>
-  <strong>Accepted at:</strong>
-  <%= @story.accepted_at %>
-</p>
-
-<p>
-  <strong>Like:</strong>
-  <%= @story.like %>
-</p>
-
-<p>
-  <strong>Banned:</strong>
-  <%= @story.banned %>
-</p>
-
-<p>
-  <strong>Ban reason:</strong>
-  <%= @story.ban_reason %>
-</p>
-
-<p>
-  <strong>Banned at:</strong>
-  <%= @story.banned_at %>
-</p>
-
-<p>
-  <strong>Deleted:</strong>
-  <%= @story.deleted %>
-</p>
-
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="section-head">
+        <div class="d-flex flex-column flex-lg-row">
+          <div class="mr-auto">
+            <h4 class="mb-1"><%= @story.title %></h4>
+            <small><%= @story.user.full_name%></small>
+          </div>
+          <div class="float-right">
+            <small><%= Time.now.strftime("%B %d, %Y")%></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card bg-light mb-3 w-100">
+        <div class="card-body">
+          <i class="card-text"><%= @story.intro %></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <p><%= @story.content %></p>
+    </div>
+  </div>
+</div>
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>

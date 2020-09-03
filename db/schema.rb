@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 2020_08_22_035641) do
     t.string "title"
     t.text "content"
     t.text "intro"
-    t.integer "user_id", null: false
-    t.integer "category_id", null: false
-    t.integer "contest_id", null: false
+    t.integer "user_id"
+    t.integer "category_id"
+    t.integer "contest_id"
     t.integer "status"
     t.datetime "accepted_at"
     t.integer "like", default: 0
