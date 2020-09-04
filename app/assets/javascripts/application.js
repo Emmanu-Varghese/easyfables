@@ -23,4 +23,21 @@
 
 $(document).on('ready turbolinks:load', function() {
 	feather.replace();
+	  //load more posts on click of button
+  if ($('#paginate-load-more-button').size() > 0) {
+    $('#paginate-load-more-button .pagination').hide()
+
+    $('button#load-more-posts').off().on("click", function() {
+      more_comments_url = $('#paginate-load-more-button .pagination a.next_page').attr('href');
+      $this = $(this);
+      $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled');
+      $.getScript(more_comments_url, function() {
+        if ($this) {
+          $this.text('Load more comments').removeClass('disabled');
+        }
+      });
+    });
+  };
 });
+
+

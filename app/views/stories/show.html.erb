@@ -23,7 +23,20 @@
     <div class="col-md-12">
       <p><%= @story.content %></p>
     </div>
+    <div class="col-md-12">
+      <h3>Comments</h3>
+      <div id="comments">
+        <%= render partial: "comments/form", locals: { commentable: @story } %>
+        <div id="comment-list">
+          <%= render @comments, continue_thread: 5 %>
+        </div>
+      </div>
+    </div>
+    <% if @comments.count > 5 %>
+    <div class="col-md-12 mt-4">
+      <div id="paginate-load-more-button"><%= will_paginate @comments %></div>
+      <button class="btn btn-light w-100" id="load-more-posts" style="display: block;">Load more comments</button>   
+    </div>
+    <% end %>
   </div>
 </div>
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>

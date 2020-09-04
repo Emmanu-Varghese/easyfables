@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_035641) do
+ActiveRecord::Schema.define(version: 2020_09_04_021139) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 2020_08_22_035641) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "parent_id"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contests", force: :cascade do |t|
@@ -155,6 +167,7 @@ ActiveRecord::Schema.define(version: 2020_08_22_035641) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "contests", "categories"
   add_foreign_key "contests", "rules"
   add_foreign_key "stories", "categories"

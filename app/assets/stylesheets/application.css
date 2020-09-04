@@ -92,3 +92,10 @@ ul.errors li{
   width: 100%;
   float: left;
 }
+button#load-more-posts img{
+  max-height: 15px;
+}
+button#load-more-posts:focus{
+  outline: none;
+  box-shadow: none;
+}

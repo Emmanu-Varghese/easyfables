@@ -28,7 +28,7 @@
   <% else %>
   <%= render "layouts/head_panel" %>
   <main   style="padding-top: 70px;padding-bottom: 25px;">
-    <% if !notice.blank? %>
+    <% if !notice.blank? and controller_name != 'home' %>
           <div class="container mt-4">
           <p id="notice" class="alert alert-info"><%= notice %></p>
         </div>

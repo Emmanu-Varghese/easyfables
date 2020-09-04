@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  resources :comments
   mount Ckeditor::Engine => '/ckeditor'
   get 'home/index'
   root 'home#index'
 
 
-  resources :stories
+  resources :stories do
+    resources :comments, module: :stories
+  end
   resources :contests
   resources :rules
   devise_for :users, controllers: {

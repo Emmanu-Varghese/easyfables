@@ -10,6 +10,12 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
+
+    @comments =  @story.comments.paginate(page: params[:page], per_page: 10).order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /stories/new
@@ -71,4 +77,4 @@ class StoriesController < ApplicationController
     def story_params
       params.require(:story).permit(:title, :content, :intro, :user_id, :category_id, :contest_id, :status, :accepted_at, :like, :banned, :ban_reason, :banned_at, :deleted)
     end
-end
+  end

@@ -1,0 +1,8 @@
+$('#comment-list').append('<%= j render @comments %>');
+
+<% if @comments.next_page %>
+  $('#paginate-load-more-button .pagination').replaceWith('<%= j will_paginate @comments %>');
+  $('#paginate-load-more-button .pagination').hide();
+<% else %>
+  $('#paginate-load-more-button .pagination, #load-more-posts').remove();
+  <% end %>

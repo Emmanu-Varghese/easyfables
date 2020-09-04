@@ -1,0 +1,6 @@
+var form = comments.parentElement.querySelector("form")
+
+form.insertAdjacentHTML('afterend', '<%=j render partial: "comments/comment", locals: { comment: @comment }, format: :html %>')
+
+
+form.reset()
