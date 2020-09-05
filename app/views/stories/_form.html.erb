@@ -19,14 +19,14 @@
   </div>
   <div class="col-md-12">
    <div class="form-group">
-    <%= form.label :intro %>
-    <%= form.text_area :intro, class: 'form-control', required: true, :minlength => 100, :maxlength => 200  %>
+    <%= form.label :intro %><small class="ml-2">Character count: 100 - 300</small>
+    <%= form.text_area :intro, :rows => 4,:style => "max-height: 200px;min-height:100px;", class: 'form-control track-chars', required: true, :minlength => 100, :maxlength => 300  %>
   </div>
 </div>
 <div class="col-md-12">
   <div class="form-group">
-    <%= form.label :content %>
-    <%= form.rich_text_area :content, :style => "min-height:250px;", required: true, :minlength => 2000, :maxlength => 5500  %>
+    <%= form.label :content %><small class="ml-2">Character count: 2000 - 5000</small>
+    <%= form.rich_text_area :content,:style => "max-height: 600px;min-height:300px;overflow-y:scroll;", required: true, :minlength => 2000, :maxlength => 5000, :class => 'track-chars'  %>
   </div>
 </div>
 <div class="col-md-3">
@@ -45,4 +45,5 @@
 </div>
 <script type="text/javascript">
   $('form').validate();
+  bind_textareas();
 </script>

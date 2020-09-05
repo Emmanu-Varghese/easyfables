@@ -1,10 +1,11 @@
 class StoriesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.all.order('created_at DESC').paginate(page: params[:page], per_page: 6)
   end
 
   # GET /stories/1
@@ -62,7 +63,7 @@ class StoriesController < ApplicationController
   def destroy
     @story.destroy
     respond_to do |format|
-      format.html { redirect_to stories_url, notice: 'Story was successfully destroyed.' }
+      format.html { redirect_to list_stories_url, notice: 'Story was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

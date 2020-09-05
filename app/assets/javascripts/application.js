@@ -24,20 +24,106 @@
 $(document).on('ready turbolinks:load', function() {
 	feather.replace();
 	  //load more posts on click of button
-  if ($('#paginate-load-more-button').size() > 0) {
-    $('#paginate-load-more-button .pagination').hide()
+    if ($('#paginate-load-more-button').size() > 0) {
+      $('#paginate-load-more-button .pagination').hide()
 
-    $('button#load-more-posts').off().on("click", function() {
-      more_comments_url = $('#paginate-load-more-button .pagination a.next_page').attr('href');
-      $this = $(this);
-      $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled');
-      $.getScript(more_comments_url, function() {
-        if ($this) {
-          $this.text('Load more comments').removeClass('disabled');
-        }
+      $('button#load-more-posts').off().on("click", function() {
+        more_comments_url = $('#paginate-load-more-button .pagination a.next_page').attr('href');
+        $this = $(this);
+        $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled');
+        $.getScript(more_comments_url, function() {
+          if ($this) {
+            $this.text('Load more comments').removeClass('disabled');
+          }
+        });
       });
-    });
-  };
-});
+    };
+
+    // $('.like__btn').off().on('click', function(){
+    //   // Check if it's already been clicked
+    //   if ($(this).hasClass('active')) {
+    //     $(this).removeClass('active')
+    //     // Update the number
+    //     updated_likes = parseInt($('.like__btn span').html()) - 1;
+    //     $('.like__btn span').html(updated_likes);
+    //   }else{
+    //     $(this).addClass('active')
+    //     // Update the number
+    //     updated_likes = parseInt($('.like__btn span').html()) + 1;
+    //     $('.like__btn span').html(updated_likes);
+    //   }
+    // });
+  });
+
+function bind_textareas() {
+  $('textarea.track-chars').each(function() {
+        //console.log(  $('textarea').siblings('.chars'))
+
+        if ( $(this).attr('chars') != 1 ) {
+          var maxLength = parseInt($(this).attr('maxLength'));
+          $(this).attr('chars', 1);
+          $(this).parent().append('<span class="chars">' + $(this).text().length + '</span><span> / ' + maxLength + ' characters</span>');
+          var count = $(this).val().length;   
+
+          if(count == maxLength) {
+            $(this).next('.chars').css('color', 'red');
+          } else if (count >= parseInt(maxLength / 2)) {
+            $(this).next('.chars').css('color', 'orange');        
+          } else {
+            $(this).next('.chars').css('color', 'green');
+          }  
+        }     
+      });
 
 
+  $('textarea.track-chars').on('input', function (){    
+    var maxLength = parseInt($(this).attr('maxLength'));
+    var count = $(this).val().length;
+    var charLeft =  maxLength - count;
+
+    if(count == maxLength) {
+      $(this).next('.chars').css('color', 'red');
+    } else if (count >= parseInt(maxLength / 2)) {
+      $(this).next('.chars').css('color', 'orange');
+    } else {
+      $(this).next('.chars').css('color', 'green');
+    }
+    $(this).next('.chars').text(count);
+  }); 
+
+
+  $('trix-editor.track-chars').each(function() {
+        //console.log(  $('textarea').siblings('.chars'))
+
+        if ( $(this).attr('chars') != 1 ) {
+          var maxLength = parseInt($(this).attr('maxLength'));
+          $(this).attr('chars', 1);
+          $(this).parent().append('<span class="chars">' + $(this).text().length + '</span><span> / ' + maxLength + ' characters</span>');
+          var count = $(this).val().length;   
+
+          if(count == maxLength) {
+            $(this).next('.chars').css('color', 'red');
+          } else if (count >= parseInt(maxLength / 2)) {
+            $(this).next('.chars').css('color', 'orange');        
+          } else {
+            $(this).next('.chars').css('color', 'green');
+          }  
+        }     
+      });
+
+
+  $('trix-editor.track-chars').on('input', function (){    
+    var maxLength = parseInt($(this).attr('maxLength'));
+    var count = $(this).val().length;
+    var charLeft =  maxLength - count;
+
+    if(count == maxLength) {
+      $(this).next('.chars').css('color', 'red');
+    } else if (count >= parseInt(maxLength / 2)) {
+      $(this).next('.chars').css('color', 'orange');
+    } else {
+      $(this).next('.chars').css('color', 'green');
+    }
+    $(this).next('.chars').text(count);
+  }); 
+}

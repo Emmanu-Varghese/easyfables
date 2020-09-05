@@ -16,6 +16,7 @@ require("@rails/activestorage").start()
 require("trix")
 require("@rails/actiontext")
 
+import "@fortawesome/fontawesome-free/js/all";
 import "../trix-editor-overrides"
 
-// import "controllers"
+import "controllers"

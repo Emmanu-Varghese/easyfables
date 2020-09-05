@@ -73,4 +73,5 @@ gem 'image_processing', '~> 1.2'
 gem "stimulus_reflex", "~> 3.2"
 gem 'jbuilder', github: 'rails/jbuilder', branch: 'master'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem 'will_paginate-bootstrap4'
 gem 'faker'

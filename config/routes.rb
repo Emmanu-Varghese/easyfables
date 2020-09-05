@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get 'my-profile' => 'user_profile#user_profile'
   get 'write-story' => 'user_profile#write_story'
   delete 'destroy_user'=> 'admin_sections#destroy_user'
+
+  get 'list-stories' => 'admin_sections#list_stories'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

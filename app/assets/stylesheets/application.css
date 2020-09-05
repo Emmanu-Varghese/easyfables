@@ -57,6 +57,12 @@
 html,
 body {
   height: 100%;
+  font-family: 'Arvo', serif;
+}
+main .trix-content{
+  line-height: 2;
+  font-size: 16px;
+  float: left;
 }
 body.login-body {
   display: -ms-flexbox;
@@ -78,6 +84,7 @@ footer.sticky{
 }
 label.error{
   color: red;
+  font-size: .875rem;
 }
 .admin-footer{
   position: fixed;
@@ -98,4 +105,46 @@ button#load-more-posts img{
 button#load-more-posts:focus{
   outline: none;
   box-shadow: none;
+}
+label{
+  font-size: 20px;
+}
+.pagination{
+  align-items: center;
+  justify-content: center;
+}
+
+.like__btn {
+    border: none;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 5px;
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width:70px;
+    font-size: 20px;
+}
+.like__btn:focus{
+  outline: none !important;
+}
+.like__btn.active{
+  background-color: red;
+}
+.like__icon {
+    font-size: 1.2rem;
+    margin-right: 0.3rem;
+}
+
+.like__number {
+    font-size: 0.8rem;
+}
+
+.like-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

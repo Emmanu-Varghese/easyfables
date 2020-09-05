@@ -1,0 +1,49 @@
+<div class="d-flex flex-column flex-lg-row ">
+  <h2 class="mr-auto">Stories</h2>
+  <div class="float-right">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a href="<%= list_stories_path(:status => 'All')%>" class="btn btn-secondary rounded-0 <%= !(params.has_key?(:status)) || params[:status] == 'All' ? 'active' : ''%>">All</a>
+      <a href="<%= list_stories_path(:status => 'Submitted')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Submitted' ? 'active' : ''%>">Submitted</a>
+      <a href="<%= list_stories_path(:status => 'In Review')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'In Review' ? 'active' : ''%>">In Review</a>
+      <a href="<%= list_stories_path(:status => 'Need Correction')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Need Correction' ? 'active' : ''%>">Need Correction</a>
+      <a href="<%= list_stories_path(:status => 'Published')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Published' ? 'active' : ''%>">Published</a>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Submitted at</th>
+        <th>Status</th>
+        <th colspan="3">Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @stories.count == 0 %>
+      <tr>
+        <td colspan="7" class="text-center">Nothing to display</td>
+      </tr>
+      <% else %>
+        <% @stories.each do |story| %>
+          <tr>
+            <td><%= story.title%></td>
+            <td><%= story.user.full_name %></td>
+            <td><%= story.created_at.strftime('%B %d, %Y %I:%M %p') %></td>
+            <td><%= story.status%></td>
+            <td><%= link_to "View", story_path(story), class: "btn-sm btn-primary" %></td>
+            <td><%= link_to "Edit", edit_story_path(story), class: "btn-sm btn-primary" %>
+            </td>
+            <td><%= link_to "Delete", story_path(story), data: { confirm: "Are you sure?" }, method: :delete, class: "btn-sm btn-danger"  %>
+            </td>
+          </tr>
+        <% end %>
+      <% end%>
+    </tbody>
+  </table>
+  <%= will_paginate @stories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+</div>

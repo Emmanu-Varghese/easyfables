@@ -1,6 +1,12 @@
-var form = comments.parentElement.querySelector("form")
+$("#error-explanation").html("");
 
-form.insertAdjacentHTML('afterend', '<%=j render partial: "comments/comment", locals: { comment: @comment }, format: :html %>')
-
-
-form.reset()
+<% if @comment.errors.any? %>
+$("#error-explanation").html("<ul class='errors alert-danger pt-2 pb-2'></ul>");
+  <% @comment.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
+  <% end %>
+<% else %>
+	var form = comments.parentElement.querySelector("form");
+	form.insertAdjacentHTML('afterend', '<%=j render partial: "comments/comment", locals: { comment: @comment }, format: :html %>');
+	form.reset();
+<% end %>
