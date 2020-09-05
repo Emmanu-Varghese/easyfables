@@ -19,6 +19,7 @@
 //= require activestorage
 //= require turbolinks
 //= require ckeditor/init
+//= require_tree ./channels
 //= require_tree .
 
 $(document).on('ready turbolinks:load', function() {
