@@ -7,14 +7,19 @@
         <div class="d-flex flex-column flex-lg-row">
           <h2 class="mr-auto">Stories</h2>
           <div class="float-right">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary rounded-0 active">Most Likes</button>
-            <button type="button" class="btn btn-secondary rounded-0">Recent</button>
-          </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary rounded-0 active">Recent</button>
+              <button type="button" class="btn btn-secondary rounded-0">Most Likes</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <% if @stories.nil? or @stories.blank? %>
+    <div class="col-md-12 text-center">
+      <h3>No stories to show!</h3>
+    </div>
+    <% else %>
     <% @stories.each do |story|%>
     <div class="col-lg-4 col-sm-6 mb-4">
       <div class="card h-100">
@@ -26,11 +31,12 @@
           <p class="card-text"><%= story.intro%></p>
         </div>
         <div class="card-footer">
-    <small>Author: <%= story.user.full_name %></small>
-    <small class="float-right">Likes: <span id="story-<%= story.id %>-like"><%= story.like %></span>, Comments: 0</small>
-  </div>
+          <small>Author: <%= story.user.full_name %></small>
+          <small class="float-right">Likes: <span id="story-<%= story.id %>-like"><%= story.like %></span>, Comments: 0</small>
+        </div>
       </div>
     </div>
+    <% end %>
     <% end %>
   </div>
   <!-- /.row -->

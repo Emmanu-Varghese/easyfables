@@ -63,6 +63,7 @@ main .trix-content{
   line-height: 2;
   font-size: 16px;
   float: left;
+  width: 100%;
 }
 body.login-body {
   display: -ms-flexbox;

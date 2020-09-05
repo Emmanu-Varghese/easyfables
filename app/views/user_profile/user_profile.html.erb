@@ -5,10 +5,10 @@
       <div class="section-head">
         <div class="d-flex flex-column flex-lg-row">
           <div class="mr-auto" style="max-width: 75%;">
-          <h2 class="mb-0"><%= current_user.full_name %></h2>
-          <h6 class="text-secondary">@emmanu</h6>
-          <i class="mb-2 float-left">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</i>
-        </div>
+            <h2 class="mb-0"><%= current_user.full_name %></h2>
+            <h6 class="text-secondary">@emmanu</h6>
+            <i class="mb-2 float-left">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</i>
+          </div>
           <div class="float-right">
             <small>Member since <%= current_user.created_at.strftime("%B %d, %Y") %></small>
           </div>
@@ -17,120 +17,54 @@
     </div>
   </div>
 
-    <div class="row mb-4">
+  <div class="row mb-4">
     <div class="col-md-12">
-        <div class="d-flex flex-column flex-lg-row">
-          <div class="mr-auto">
+      <div class="d-flex flex-column flex-lg-row" style="justify-content: flex-end;">
+        <div class="float-right">
           <div class="btn-group" role="group" aria-label="Basic example">
             <a type="button" class="btn btn-secondary rounded-0 active" href="<%= my_profile_path(:tab => 'my-stories') %>">My Stories</a>
-            <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favorites') %>">Favorites</a>
-          </div>
-          </div>
-          <div class="float-right">
-            <a class="btn btn-success" href="<%= new_story_path %>">Write Story</a>
+            <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favourites') %>">Favourites</a>
+            <a href="<%= list_stories_path(:status => 'Submitted')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Submitted' ? 'active' : ''%>">Submitted</a>
+            <a href="<%= list_stories_path(:status => 'In Review')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'In Review' ? 'active' : ''%>">In Review</a>
+            <a href="<%= list_stories_path(:status => 'Need Correction')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Need Correction' ? 'active' : ''%>">Need Correction</a>
+            <a href="<%= list_stories_path(:status => 'Published')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Published' ? 'active' : ''%>">Published</a>
+            <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favourites') %>">My Earnings $</a>
+            <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favourites') %>">Edit Profile</a>
+            <a type="button" class="btn btn-success rounded-0" href="<%= new_story_path %>">Write Story</a>
           </div>
         </div>
+
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
+    <% if @stories.nil? or @stories.blank? %>
+      <div class="col-md-12 text-center">
+        <h3>No stories to show!</h3>
+      </div>
+    <% else %>
+      <% @stories.each do |story|%>
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
 
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project One</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="<%= story_path(story)%>"><%= story.title%></a>
+            </h4>
+            <p class="card-text"><%= story.intro%></p>
+          </div>
+          <div class="card-footer">
+            <small>Author: <%= story.user.full_name %></small>
+            <small class="float-right">Likes: <span id="story-<%= story.id %>-like"><%= story.like %></span>, Comments: 0</small>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
+      <% end %>
+    <% end %>
 
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Two</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Three</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Four</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Five</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Six</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Seven</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Eight</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 mb-4">
-      <div class="card h-100">
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">Project Nine</a>
-          </h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-        </div>
-      </div>
-    </div>
+  </div>
+  <!-- Pagination -->
+  <div class="justify-content-center">
+    <%= will_paginate @stories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
   </div>
 </div>
