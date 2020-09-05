@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LikeReflex < ApplicationReflex
+  delegate :current_user, to: :connection
   # Add Reflex methods in this file.
   #
   # All Reflex instances expose the following properties:
@@ -23,19 +24,18 @@ class LikeReflex < ApplicationReflex
 
   def toggle
     story = Story.find(element.dataset[:id])
-    story.update(:like => (story.like+1))
-    # if !c_user.nil?
-    #   user_like = UserLike.where(:user_id => c_user.id).where(:story_id => story.id)
-    #   if user_like.blank?
-    #     UserLike.create(:user_id => c_user.id,:story_id => story.id)
-    #     story.update(:like => (story.like+1))
-    #   else
-    #     user_like.destroy_all
-    #     if story.like > 0
-    #       story.update(:like => (story.like-1))
-    #     end
-    #   end
-    # end
+    if !current_user.nil?
+      user_like = UserLike.where(:user_id => current_user.id).where(:story_id => story.id)
+      if user_like.blank?
+        UserLike.create(:user_id => current_user.id,:story_id => story.id)
+        story.update(:like => (story.like+1))
+      else
+        user_like.destroy_all
+        if story.like > 0
+          story.update(:like => (story.like-1))
+        end
+      end
+    end
    
   end
 

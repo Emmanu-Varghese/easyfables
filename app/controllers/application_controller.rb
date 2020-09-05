@@ -3,11 +3,16 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   layout :resolve_layout
+  before_action :set_action_cable_identifier
 
   private
 
+    def set_action_cable_identifier
+      cookies.encrypted[:user_id] = current_user&.id
+    end
+    
     def after_sign_out_path_for(_resource)
-      # "/users/sign_in"
+        # "/users/sign_in"
       new_user_session_path
     end
 
@@ -26,4 +31,4 @@ class ApplicationController < ActionController::Base
         'application'
       end
     end
-end
+  end

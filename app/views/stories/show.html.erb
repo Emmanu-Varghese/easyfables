@@ -25,8 +25,8 @@
     </div>
     <div class="col-md-12 mt-4">
       <div class="like-container">
-        <% if current_user.present? %>
-        <%= button_tag ('<i class="far fa-thumbs-up"></i><span class="like__number ml-1">'+@story.like.to_s+'</span>').html_safe, type: 'button', class: 'like__btn animated', data: { reflex: "click->LikeReflex#toggle", id: @story.id, like_token: current_user.id }%>
+        <% if current_user.present? and current_user.liked?(@story.id) %>
+        <%= button_tag ('<i class="far fa-thumbs-up"></i><span class="like__number ml-1">'+@story.like.to_s+'</span>').html_safe, type: 'button', class: 'like__btn animated active', data: { reflex: "click->LikeReflex#toggle", id: @story.id }%>
         <% else %>
           <%= button_tag ('<i class="far fa-thumbs-up"></i><span class="like__number ml-1">'+@story.like.to_s+'</span>').html_safe, type: 'button', class: 'like__btn animated', data: { reflex: "click->LikeReflex#toggle", id: @story.id }%>
         <% end %>
