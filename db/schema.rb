@@ -123,7 +123,11 @@ ActiveRecord::Schema.define(version: 2020_09_05_045354) do
     t.integer "category_id"
     t.integer "contest_id"
     t.integer "status"
+    t.datetime "submitted_at"
+    t.datetime "in_review_at"
     t.datetime "accepted_at"
+    t.datetime "rejected_at"
+    t.datetime "published_at"
     t.integer "like", default: 0
     t.boolean "banned", default: false
     t.text "ban_reason"

@@ -5,8 +5,7 @@
       <div class="section-head">
         <div class="d-flex flex-column flex-lg-row">
           <div class="mr-auto" style="max-width: 75%;">
-            <h2 class="mb-0"><%= current_user.full_name %></h2>
-            <h6 class="text-secondary">@emmanu</h6>
+            <h2 class="mb-2"><%= current_user.full_name %></h2>
             <i class="mb-2 float-left">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</i>
           </div>
           <div class="float-right">
@@ -26,7 +25,7 @@
             <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favourites') %>">Favourites</a>
             <a href="<%= list_stories_path(:status => 'Submitted')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Submitted' ? 'active' : ''%>">Submitted</a>
             <a href="<%= list_stories_path(:status => 'In Review')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'In Review' ? 'active' : ''%>">In Review</a>
-            <a href="<%= list_stories_path(:status => 'Need Correction')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Need Correction' ? 'active' : ''%>">Need Correction</a>
+            <a href="<%= list_stories_path(:status => 'Rejected')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Rejected' ? 'active' : ''%>">Rejected</a>
             <a href="<%= list_stories_path(:status => 'Published')%>" class="btn btn-secondary rounded-0 <%= !params[:status].nil? and params[:status] == 'Published' ? 'active' : ''%>">Published</a>
             <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favourites') %>">My Earnings $</a>
             <a type="button" class="btn btn-secondary rounded-0" href="<%= my_profile_path(:tab => 'favourites') %>">Edit Profile</a>

@@ -1,5 +1,12 @@
 <div class="container mt-4">
   <div class="row">
+    <% if @story.status == "Rejected" %>
+    <div class="col-md-12">
+      <div class="alert alert-danger w-100" role="alert">
+        This story doesn't go along with our community guidelines. Please correct the story according to the comments and resubmit.
+      </div>
+    </div>
+    <% end %>
     <div class="col-md-12">
       <div class="section-head">
         <div class="d-flex flex-column flex-lg-row">
@@ -37,7 +44,11 @@
 </div>
 <div class="col-md-12">
   <div class="actions">
+    <% if @story.status == "Rejected" %>
+    <%= form.submit 'Resubmit', class: 'btn btn-primary' %>
+    <% else %>
     <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
   </div>
 </div>
 </div>

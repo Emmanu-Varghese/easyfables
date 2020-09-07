@@ -8,8 +8,8 @@
 
 22.times do
   Story.create(user_id: 1,
-  				title: Faker::Lorem.words(rand(2..10)),
-              content: Faker::Lorem.paragraphs(rand(2..8)),
+  				title: Faker::Lorem.words(rand(2..10)).join(" "),
+              content: Faker::Lorem.paragraphs(rand(2..8)).join(" "),
               category_id: 1,
               status: 'Published')
 

@@ -32,7 +32,7 @@
         </div>
         <div class="card-footer">
           <small>Author: <%= story.user.full_name %></small>
-          <small class="float-right">Likes: <span id="story-<%= story.id %>-like"><%= story.like %></span>, Comments: 0</small>
+          <small class="float-right">Likes: <span id="story-<%= story.id %>-like"><%= story.like %></span>, Comments: <%= story.comments.count %></small>
         </div>
       </div>
     </div>

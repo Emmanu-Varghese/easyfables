@@ -18,8 +18,8 @@ class AdminSectionsController < ApplicationController
 			@stories = Story.where(:status => "Submitted").order('created_at DESC').paginate(page: params[:page], per_page: 10)
 		elsif  params[:status] == "In Review"
 			@stories = Story.where(:status => "In Review").order('created_at DESC').paginate(page: params[:page], per_page: 10)
-		elsif  params[:status] == "Need Correction"
-			@stories = Story.where(:status => "Need Correction").order('created_at DESC').paginate(page: params[:page], per_page: 10)
+		elsif  params[:status] == "Rejected"
+			@stories = Story.where(:status => "Rejected").order('created_at DESC').paginate(page: params[:page], per_page: 10)
 		elsif  params[:status] == "Published"
 			@stories = Story.where(:status => "Published").order('created_at DESC').paginate(page: params[:page], per_page: 10)
 		end		

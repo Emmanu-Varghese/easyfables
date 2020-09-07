@@ -8,7 +8,11 @@ class CreateStories < ActiveRecord::Migration[6.0]
       t.belongs_to :category, foreign_key: true
       t.belongs_to :contest, foreign_key: true
       t.integer :status
+      t.datetime :submitted_at
+      t.datetime :in_review_at
       t.datetime :accepted_at
+      t.datetime :rejected_at
+      t.datetime :published_at
       t.integer :like, default: 0
       t.boolean :banned, default: false
       t.text :ban_reason

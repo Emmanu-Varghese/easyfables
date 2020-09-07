@@ -48,6 +48,9 @@ class StoriesController < ApplicationController
   # PATCH/PUT /stories/1.json
   def update
     respond_to do |format|
+      if @story.status == "Rejected"
+        @story.update(:status => "Submitted")
+      end
       if @story.update(story_params)
         format.html { redirect_to @story, notice: 'Story was successfully updated.' }
         format.json { render :show, status: :ok, location: @story }

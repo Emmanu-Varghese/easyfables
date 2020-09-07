@@ -7,12 +7,23 @@
             <h4 class="mb-1"><%= @story.title %></h4>
             <small><%= @story.user.full_name%></small>
           </div>
-          <div class="float-right">
-            <small><%= Time.now.strftime("%B %d, %Y")%></small>
+          <div class="float-right text-right">
+            <small><%= Time.now.strftime("%B %d, %Y")%></small><br>
+            <% if current_user.present? and (@story.user == current_user or current_user.has_role?(:admin)) %>
+            <%= @story.status_badge %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
+    <% if @story.status == "Rejected" %>
+    <div class="col-md-12">
+      <div class="alert alert-danger w-100" role="alert">
+        This story doesn't go along with our community guidelines. Please correct the story according to the comments and resubmit.
+      </div>
+      <%= link_to 'Edit', edit_story_path(@story), class: "btn btn-primary float-right mb-3" %>
+    </div>
+    <% end %>
     <div class="col-md-12">
       <div class="card bg-light mb-3 w-100">
         <div class="card-body">
@@ -28,13 +39,24 @@
         <% if current_user.present? and current_user.liked?(@story.id) %>
         <%= button_tag ('<i class="far fa-thumbs-up"></i><span class="like__number ml-1" id="story-'+@story.id.to_s+'-like">'+@story.like.to_s+'</span>').html_safe, type: 'button', class: 'like__btn animated active', data: { reflex: "click->LikeReflex#toggle", id: @story.id }%>
         <% else %>
-          <%= button_tag ('<i class="far fa-thumbs-up"></i><span class="like__number ml-1" id="story-'+@story.id.to_s+'-like">'+@story.like.to_s+'</span>').html_safe, type: 'button', class: 'like__btn animated', data: { reflex: "click->LikeReflex#toggle", id: @story.id }%>
+        <%= button_tag ('<i class="far fa-thumbs-up"></i><span class="like__number ml-1" id="story-'+@story.id.to_s+'-like">'+@story.like.to_s+'</span>').html_safe, type: 'button', class: 'like__btn animated', data: { reflex: "click->LikeReflex#toggle", id: @story.id }%>
         <% end %>
       </div>
       <h4 class="text-center w-100 mt-2"><i>Give Kudos!</i></h4>
     </div>
-    <div class="col-md-12">
-      <h3>Comments</h3>
+
+    <div class="col-md-12 mt-4">
+      <div class="d-flex">
+        <h3 class="mr-auto">Comments</h3>
+        <% if current_user.present? and current_user.has_role?(:admin) and @story.status != 'Published' %>
+          <% if @story.status != 'Rejected'%>
+            <%= button_tag ('Mark this story as '+@story.next_status), type: 'button', class: 'btn-sm btn-success mt-2 mb-4', data: { reflex: "click->StoryReflex#proceed", id: @story.id } %>
+            <%= button_tag ('Reject this story'), type: 'button', class: 'btn-sm btn-danger ml-2 mt-2 mb-4', data: { reflex: "click->StoryReflex#need_correction", id: @story.id } %>
+          <% else%>
+            <button class="btn-sm btn-danger mb-4" disabled="disabled">Waiting for the author to correct</button>
+          <% end %>
+        <% end %>
+      </div>
       <div id="comments">
         <%= render partial: "comments/form", locals: { commentable: @story } %>
         <div id="comment-list">
